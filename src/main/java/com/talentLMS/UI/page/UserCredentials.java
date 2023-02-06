@@ -1,8 +1,10 @@
 package com.talentLMS.UI.page;
 
 public class UserCredentials {
-    public String userName = "aidaikurmanbekova5";
-    private String userPassword = "aidaikurmanbekova5";
+    public String userName = "aidai9978@gmail.com";
+    private String userPassword = "aidai9978";
+
+
 
     public String getUserPassword() {
         return userPassword;
