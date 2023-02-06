@@ -17,10 +17,10 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".avatar-square")
     public WebElement logo;
 
-    @FindBy(id = "tl-shared-username")
+    @FindBy(xpath = "//input[@name='login']")
     public WebElement usernameInput;
 
-    @FindBy(xpath = "//input[@type='password']")
+    @FindBy(xpath = "//input[@name='password']")
     public WebElement passwordInput;
 
     @FindBy(xpath = "//input[@name='submit']")
@@ -30,13 +30,13 @@ public class LoginPage extends BasePage {
     public WebElement loginErrMess;
 
 
-    public LoginPage clickLoginBtn(){
-        elementActions.click(loginBtn);
-        return this;
-    }
+//    public LoginPage clickLoginBtn(){
+//        elementActions.click(loginBtn);
+//        return this;
+//    }
 
     public LoginPage fillUpUsernameAndPassword(String userName,String password){
-        clickLoginBtn();
+//        clickLoginBtn();
         elementActions.sendKeys(usernameInput,userName)
                 .sendKeys(passwordInput,password);
         elementActions.click(submitLoginBtn);

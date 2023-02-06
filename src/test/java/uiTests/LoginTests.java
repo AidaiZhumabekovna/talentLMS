@@ -3,15 +3,24 @@ package uiTests;
 import com.talentLMS.UI.dataProviders.ConfigReader;
 import com.talentLMS.UI.driverFactory.Driver;
 
+import com.talentLMS.UI.page.UserCredentials;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
 public class LoginTests extends BaseUiTest{
+
+    @BeforeMethod
+    public void openLoginPage(){
+       driver.navigate().to(ConfigReader.getProperty("qa_env"));
+    }
     @Test(description = "Verify user can not login with invalid username")
     public void loginWithInvalidUsernameTest(){
-        Driver.getDriver().navigate().to(ConfigReader.getProperty("qa_env"));
         loginPage.fillUpUsernameAndPassword("testName","HelloAAAAsds");
         String expectedErrMes = "Your username or password is incorrect. Please try again, making sure that CAPS LOCK key is off.";
         assertEquals(loginPage.loginErrMess.getText(),expectedErrMes);
@@ -20,8 +29,7 @@ public class LoginTests extends BaseUiTest{
     }
 
     @Test(description = "Verify user can login with valid credentials")
-    public void loginWithValidCredentials(){
-        Driver.getDriver().navigate().to(ConfigReader.getProperty("qa_env"));
+    public void loginWithValidCredentials1(){
         loginPage.fillUpUsernameAndPassword(userCredentials.userName, userCredentials.getUserPassword());
         webElementActions.pause(2000);
         try {
@@ -40,5 +48,16 @@ public class LoginTests extends BaseUiTest{
 //        Driver.getDriver().navigate().to(ConfigReader.getProperty("qa_env"));
 //        assertEquals(ConfigReader.getProperty("qa_env_home"), expectedWindow);
 //    }
+
+    @Test(description = "verify that user can login with valid credentials")
+    public void loginWithValidCredentials(){
+        List<String> users = new ArrayList<>();
+        users.add(userCredentials.userName);
+        users.add(userCredentials.getUserPassword());
+
+
+
+
+    }
 
 }
